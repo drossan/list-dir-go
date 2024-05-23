@@ -1,2 +1,15 @@
-# list-dir-go
-ListDir: A Command-Line Tool for Listing Files and Directories
+# ListDir
+
+**ListDir** es una herramienta de línea de comandos construida en Go, diseñada para listar recursivamente archivos y
+directorios. Permite a los usuarios especificar el directorio a listar y opcionalmente ignorar ciertos directorios. Por
+defecto, ignora directorios comunes como `.git`, `node_modules`, `vendor`, `.idea`, y `.vsc`.
+
+## Características Clave
+
+- **Listado de Directorios**: Lista todos los archivos y subdirectorios dentro de un directorio especificado.
+- **Directorios Ignorados**: Permite a los usuarios especificar directorios a ignorar, con directorios ignorados por
+  defecto como `.git`, `node_modules`, `vendor`, `.idea`, y `.vsc`.
+- **Opciones Personalizables**: Los usuarios pueden especificar el directorio a listar y los directorios a ignorar
+  mediante flags de línea de comandos.
+
+

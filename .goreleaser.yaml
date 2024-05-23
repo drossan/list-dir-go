@@ -1,0 +1,43 @@
+before:
+  hooks:
+    # You may remove this if you don't use go modules.
+    - go mod tidy
+builds:
+  - binary: griddo-env
+    goos:
+      - darwin
+      # - linux
+    goarch:
+      - amd64
+      - arm64
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -mod=vendor
+    # Build the app as static binary and embed version and commit info
+    ldflags:
+      - -s -w -extldflags '-static' -X 'main.version={{.Version}}' -X 'main.commit={{ .ShortCommit }}'
+
+release:
+  prerelease: auto
+
+## macOS universal binaries for both arm64 and amd64
+universal_binaries:
+  - name_template: 'server-cx'
+    # Combine arm64 and amd64 as a single binary and remove each
+    replace: true
+
+brews:
+  - name: server-cx
+    homepage: https://github.com/drossan/list-dir-go
+    description: "Listar recursivamente archivos y directorios"
+    repository:
+      owner: drossan
+      name: homebrew-env
+    folder: Formula
+    commit_author:
+      name: list-dir
+      email: bot@drossan.com
+
+checksum:
+  name_template: 'checksums.txt'

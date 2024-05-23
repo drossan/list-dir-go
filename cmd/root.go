@@ -44,16 +44,31 @@ var rootCmd = &cobra.Command{
 			ignoredDirs[d] = true
 		}
 
+		// Crear archivo para escribir la salida
+		outputFile, err := os.Create("list_dir_output.txt")
+		if err != nil {
+			fmt.Printf("Error creating output file: %v\n", err)
+			return
+		}
+		defer func(outputFile *os.File) {
+			_ = outputFile.Close()
+		}(outputFile)
+		writer := bufio.NewWriter(outputFile)
+
 		fmt.Println(dir + "/")
-		err := listFiles(dir, "", ignoredDirs)
+		_, _ = writer.WriteString(dir + "/\n")
+
+		err = listFiles(dir, "", ignoredDirs, writer)
 		if err != nil {
 			fmt.Printf("Error listing files: %v\n", err)
 		}
+
+		_ = writer.Flush()
 	},
 }
 
 // listFiles recorre el directorio y lista todos los archivos y subdirectorios.
-func listFiles(dir string, prefix string, ignoredDirs map[string]bool) error {
+func listFiles(dir string, prefix string, ignoredDirs map[string]bool, writer *bufio.Writer) error {
 	entries, err := os.ReadDir(dir)
 	if err != nil {
 		return err
@@ -70,11 +85,13 @@ func listFiles(dir string, prefix string, ignoredDirs map[string]bool) error {
 			return err
 		}
 
-		fmt.Printf("%s|-- %s\n", prefix, entry.Name())
+		output := fmt.Sprintf("%s|-- %s\n", prefix, entry.Name())
+		fmt.Print(output)
+		_, _ = writer.WriteString(output)
 
 		if info.IsDir() {
 			newPrefix := prefix + "|   "
-			_ = listFiles(path, newPrefix, ignoredDirs)
+			_ = listFiles(path, newPrefix, ignoredDirs, writer)
 		}
 	}
 	return nil

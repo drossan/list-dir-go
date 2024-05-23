@@ -13,3 +13,8 @@ defecto, ignora directorios comunes como `.git`, `node_modules`, `vendor`, `.ide
   mediante flags de línea de comandos.
 
 
+## Instalación en MAC con Brew
+```Bash
+brew tap drossan/tools
+brew install list-dir
+```

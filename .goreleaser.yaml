@@ -28,7 +28,7 @@ universal_binaries:
     replace: true
 
 brews:
-  - name: server-cx
+  - name: list-dir
     homepage: https://github.com/drossan/list-dir-go
     description: "Listar recursivamente archivos y directorios"
     repository:

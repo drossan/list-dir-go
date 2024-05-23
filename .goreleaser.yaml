@@ -23,7 +23,7 @@ release:
 
 ## macOS universal binaries for both arm64 and amd64
 universal_binaries:
-  - name_template: 'server-cx'
+  - name_template: 'list-dir'
     # Combine arm64 and amd64 as a single binary and remove each
     replace: true
 

@@ -33,7 +33,7 @@ brews:
     description: "Listar recursivamente archivos y directorios"
     repository:
       owner: drossan
-      name: homebrew-env
+      name: homebrew-tools
     folder: Formula
     commit_author:
       name: list-dir

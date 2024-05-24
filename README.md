@@ -14,7 +14,34 @@ defecto, ignora directorios comunes como `.git`, `node_modules`, `vendor`, `.ide
 
 
 ## Instalación en MAC con Brew
+
+![Instalación](install.gif)
+
+## Instalación en MAC con Brew
 ```Bash
 brew tap drossan/tools
 brew install list-dir
+```
+## Uso
+```Bash
+list-dir
+```
+
+### Salida
+```text
+/list-dir-go/
+|-- .github
+|   |-- workflows
+|   |   |-- release.yml
+|-- .gitignore
+|-- .goreleaser.yaml
+|-- LICENSE
+|-- README.md
+|-- app.yaml
+|-- cmd
+|   |-- root.go
+|-- go.mod
+|-- go.sum
+|-- list_dir_output.txt
+|-- main.go
 ```

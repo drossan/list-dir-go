@@ -3,13 +3,16 @@ before:
     # You may remove this if you don't use go modules.
     - go mod tidy
 builds:
-  - binary: griddo-env
+  - binary: list-dir
     goos:
       - darwin
-      # - linux
+      - linux
+      - windows
     goarch:
       - amd64
       - arm64
+      - 386
+      - arm
     env:
       - CGO_ENABLED=0
     flags:
